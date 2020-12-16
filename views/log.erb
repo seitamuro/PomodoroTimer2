@@ -1,0 +1,13 @@
+<table border="1">
+  <tr>
+    <th>開始時間</th>
+    <th>終了時間</th>
+    <th>作業時間</th>
+    <th>作業の種類</th>
+  </tr>
+<% @logs.all().each do |l| %>
+  <tr>
+    <td><%= Time.at(l.starttime.to_i) %></td><td><%= Time.at(l.endtime.to_i) %></td><td><%= l.endtime.to_i - l.starttime.to_i %></td><td><%= l.worktype%></td>
+  </tr>
+<% end %>
+</table>

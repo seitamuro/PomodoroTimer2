@@ -1,0 +1,6 @@
+<script src="timer.js"></script>
+<input type="button" id="work25" value="作業開始" onClick="starttimer(25*60, 0);">
+<input type="button" id="rest5" value="休憩" onClick="starttimer(3000, 1);">
+<input type="textarea" value="5" id="workminite"  onChange="changeButtonText('workminite', 'work')">
+<input type="button" id="work" value="5分の作業開始" onClick="starttimer(1*2, 0);">
+<div id="timer"></div>

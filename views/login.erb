@@ -1,0 +1,11 @@
+ログイン画面
+<div id="message" style="color: red;"><%= @message %></div>
+<form action="/login" method="post">
+  <input type="text" name="userid", size="20" maxlength="20"><br>
+  <input type="password" name="password" size="20" maxlength="50"><br>
+  <br>
+  <input type="submit" value="Login">
+  <input type="reset" value="Reset">
+</form><br>
+
+<a href="./createuser">新規登録</a>
