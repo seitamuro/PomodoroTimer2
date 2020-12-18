@@ -33,7 +33,7 @@ class Object
   end
 
   def is_empty?
-    to_s == ""
+    to_s.strip == ""
   end
 
   def has_specialchar?
@@ -47,6 +47,14 @@ class Object
   def has_whitespace?
     /\s+/.match(to_s) != nil
   end
+end
+
+def to_time_text(time)
+  t = time.to_i
+  minite = "#{t / 60}".rjust(1, "0")
+  second = "#{t % 60}".rjust(2, "0")
+
+  return "#{minite}:#{second}"
 end
 
 puts "has_specialchar"

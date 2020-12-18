@@ -1,0 +1,17 @@
+.text-centered {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.round {
+  border-radius: 5px;
+  padding: 3px;
+  background-color: white;
+}

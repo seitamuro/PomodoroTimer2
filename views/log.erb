@@ -1,13 +1,14 @@
-<table border="1">
-  <tr>
-    <th>開始時間</th>
-    <th>終了時間</th>
-    <th>作業時間</th>
-    <th>作業の種類</th>
-  </tr>
-<% @logs.all().each do |l| %>
-  <tr>
-    <td><%= Time.at(l.starttime.to_i) %></td><td><%= Time.at(l.endtime.to_i) %></td><td><%= l.endtime.to_i - l.starttime.to_i %></td><td><%= l.worktype%></td>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th>開始時間</th>
+      <th>終了時間</th>
+      <th>作業時間</th>
+    </tr>
+  </thead>
+<% @logs.all().reverse_each do |l| %>
+  <tr class="<%= if l.worktype == 0 then 'table-danger' else 'table-info' end %>" >
+    <td><%= Time.at(l.starttime.to_i) %></td><td><%= Time.at(l.endtime.to_i) %></td><td><%= to_time_text(l.endtime.to_i - l.starttime.to_i) %></td>
   </tr>
 <% end %>
 </table>

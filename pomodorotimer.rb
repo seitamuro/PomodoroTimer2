@@ -16,7 +16,7 @@ NOW_SESSION = random_text();
 SESSION_EXPIRED_MESSAGE = "セッションが切れました。ログインしなおしてください。"
 
 module WORKTYPE
-  WORK = 1.freeze
+  WORK = 0.freeze
   REST = 1.freeze
 end
 
@@ -39,7 +39,7 @@ def is_login()
 end
 
 # ログアウト
-def delete_session()
+def logout()
   session.clear
 end
 
@@ -60,7 +60,13 @@ def is_login_with_logout(message="")
     return true
   end
 
-  delete_session()
+  logout()
+  # message = URI.escape(message)
+  # redirect "/login?message=#{message}"
+  redirect_with_message(message)
+end
+
+def redirect_with_message(message)
   message = URI.escape(message)
   redirect "/login?message=#{message}"
 end
@@ -84,27 +90,36 @@ get '/login' do
 end
 
 post "/login" do
+  begin
   login(params[:userid], params[:password])
+  rescue
+    redirect_with_message("ユーザーIDかパスワードが間違っています。")
+  end
 
   redirect "/home"
 end
 
 get '/logout' do
-  delete_session()
+  logout()
   erb :logout
 end
 
 get '/createuser' do
-  if !is_login() 
-    erb :createuser
-  else
-    redirect "/home"
-  end
+  logout()
+  erb :createuser
 end
 
 post "/createuser" do
-  User.create_user(params[:userid], params[:username], params[:password])
-  login(params[:userid], params[:username])
+  begin
+    User.create_user(params[:userid], params[:username], params[:password])
+    login(params[:userid], params[:password])
+  rescue RuntimeError => e
+    redirect "/createuser?message=#{URI.escape("#{e}")}"
+  rescue ActiveRecord::StatementInvalid
+    redirect "/createuser?message=#{URI.escape("既に存在するユーザーIDです。別のユーザーIDを利用してください。")}"
+  rescue => e
+    redirect "/createuser?message=#{URI.escape("新しくユーザーを作成することがでませんでした。もう一度入力してください。")}"
+  end
   redirect "/home"
 end
 

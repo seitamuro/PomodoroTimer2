@@ -19,15 +19,15 @@ end
 
 def normalize_userid(userid)
   if userid.is_empty?
-    raise "userid is empty."
+    raise "ユーザーIDが空欄です。"
   end
 
   if userid.has_specialchar_without_underbar?
-    raise "Invlaid userid. userid cannot have specialchar without underbar."
+    raise "ユーザーIDはアンダーバー以外の特殊文字を利用できません。"
   end
 
   if userid.has_whitespace?
-    raise "userid cannot have whitespace."
+    raise "ユーザーIDにスペースを含めることはできません。"
   end
 
   return sanitize(userid)
@@ -35,11 +35,11 @@ end
 
 def normalize_password(password)
   if password.is_empty?
-    raise "password is empty."
+    raise "パスワードが空欄です。"
   end
 
   if password.has_whitespace?
-    raise "password cannot have whitespace."
+    raise "パスワードにスペースを利用できません。"
   end
 
   return sanitize(password)
@@ -47,15 +47,15 @@ end
 
 def normalize_username(username)
   if username.is_empty?
-    raise "username is empty."
+    raise "ユーザー名が空欄です。"
   end
 
   if username.has_specialchar_without_underbar?
-    raise "Invlaid username. username cannot have specialchar without underbar."
+    raise "ユーサー名はアンダーバー以外の特殊文字を利用できません。"
   end
 
   if username.has_whitespace?
-    raise "username cannot have whitespace."
+    raise "ユーザー名でスペースを使えません。"
   end
 
   return sanitize(username)
@@ -73,7 +73,7 @@ class User
     # get user
     @user = Database.find(userid)
     if gen_pass(password, salt, algorithm) != @user.password
-      raise "Incorrect Password"
+      raise "パスワードが間違っています。"
     end
     @pomodoro = Database_Pomodoro.where("userid LIKE ?", "%#{userid}%")
   end
@@ -210,15 +210,15 @@ puts salt
 puts "#{gen_pass("password!", "#{salt}", AL_MD5)}"
 puts "---"
 
-# ユーザーの作成・ログイン・削除
-User.create_user("foo", "foo", "bar")
-puts "success: create_user"
-puts "userid & name: foo password: bar"
-u = User.login("foo", "bar")
-puts "success: login"
-u.remove()
-puts "success: remove"
-puts "---"
+## ユーザーの作成・ログイン・削除
+#User.create_user("foo", "foo", "bar")
+#puts "success: create_user"
+#puts "userid & name: foo password: bar"
+#u = User.login("foo", "bar")
+#puts "success: login"
+#u.remove()
+#puts "success: remove"
+#puts "---"
 
 # テストユーザーの作成
 # User.create_user("testuser", "testuser", "test")

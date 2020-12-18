@@ -1,11 +1,21 @@
-ログイン画面
-<div id="message" style="color: red;"><%= @message %></div>
-<form action="/login" method="post">
-  <input type="text" name="userid", size="20" maxlength="20"><br>
-  <input type="password" name="password" size="20" maxlength="50"><br>
-  <br>
-  <input type="submit" value="Login">
-  <input type="reset" value="Reset">
-</form><br>
+<div class="container">
+  <p id="message" class="row justify-content-center" style="color: red;"><%= params[:message] %></p>
+  <p class="row justify-content-center">ポモドーロタイマーへようこそ!ここはログインページです。</p>
+  <form action="/login" method="post">
+    <div class="form-group row justify-content-center">
+      <label class="col-sm-2 col-form-label">ユーザーID:</label>
+      <div class="col-sm-4"><input type="text" name="userid" class="form-control" size="20" maxlength="20"></div>
+    </div>
 
-<a href="./createuser">新規登録</a>
+    <div class="form-group row justify-content-center">
+      <label class="col-sm-2 col-form-label">パスワード:</label>
+      <div class="col-sm-4"><input type="password" name="password" class="form-control" size="20" maxlength="50"></div>
+    </div>
+
+    <div class="form-group row justify-content-center">
+      <div class="col-sm-2"><input class="btn btn-primary" type="submit" value="ログイン"> </div>
+      <div class="col-sm-2"><a class="btn btn-outline-primary" href="./createuser">新規登録</a></div>
+    </div>
+  </form>
+</div>
+
