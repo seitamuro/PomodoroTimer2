@@ -1,5 +1,3 @@
-PRAGMA foreign_keys = 1;
-
 CREATE TABLE pomodoro(
 	id char(24) primary key,
 	userid char(12),
