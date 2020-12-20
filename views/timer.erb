@@ -5,12 +5,22 @@
   </div>
 
   <div class="row justify-content-center">
-    <input type="button" class="col-sm-1 btn btn-danger" id="work25" value="作業開始" onClick="starttimer(25*60, 0);">
-    <input type="button" class="col-sm-1 btn btn-info" id="rest5" value="休憩" onClick="starttimer(5*60, 1);">
+    <input type="button" class="col-sm-2 btn btn-danger" id="work25" value="作業開始" onClick="starttimer(25*60, 0);">
+    <div class="col-sm-1"></div>
+    <input type="button" class="col-sm-2 btn btn-info" id="rest5" value="休憩" onClick="starttimer(5*60, 1);">
   </div>
 
+  <br>
+
   <div class="row justify-content-center">
-    <input type="textarea" class="col-sm-1 form-control" value="5" id="workminite"  onChange="changeButtonText('workminite', 'work')">
-    <input type="button" id="work" class="btn btn-danger" value="5分の作業開始" onClick="starttimer(2, 0, 0);">
+    <input type="textarea" class="col-sm-2 form-control" value="5" id="workminite"  onChange="changeButtonText('workminite', 'work', 0)">
+    <input type="button" id="work" class="btn btn-danger" value="5分の作業開始" onClick="starttimer(2, 0);">
+  </div>
+
+  <br>
+
+  <div class="row justify-content-center">
+    <input type="textarea" class="col-sm-2 form-control" value="1" id="restminite"  onChange="changeButtonText('restminite', 'rest', 1)">
+    <input type="button" id="rest" class="btn btn-info" value="1分の休憩開始" onClick="starttimer(60, 1);">
   </div>
 </div>

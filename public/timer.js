@@ -12,6 +12,10 @@ function starttimer(seconds, worktype) {
 	var now = d.getTime()/1000;
 	var seconds = parseInt(seconds);
 
+	if (isNaN(seconds)) {
+		return ;
+	}
+
 	if (!started) {
 		started = true;
 		setTimeout(function() {
@@ -58,12 +62,12 @@ function submit_pomodoro(starttime, endtime, worktype) {
 	xhr.send(formData);
 }
 
-function changeButtonText(origin, target) {
+function changeButtonText(origin, target, worktype) {
 	var value = document.getElementById(origin).value;
 	value = parseInt(value);
 	document.getElementById(target).value = value + "分の作業開始";
 	document.getElementById(target).onclick = null;
 	document.getElementById(target).addEventListener("click", function() {
-		starttimer(value*60)
+		starttimer(value*60, worktype)
 	});
 }

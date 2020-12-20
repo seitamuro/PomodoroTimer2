@@ -1,22 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html style="min-height: 100%;height: 100%;">
   <head>
     <meta charset="utf-8">
     <title>Pomodoro Timer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/mine.css" />
     <script type="text/javascript" src="timer.js"></script>
     <script src="check.js"></script>
     <link rel="stylesheet" href="/bootstrap-4.5.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/mine.css" />
   </head>
 
-  <body>
+  <body style="background-color: #c5ffc9;min-height: 100%;height: 100%;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-success">
     <div class="container">
-      <div class="text-center">
+      <div class="text-center text-white">
         <h1>Pomodoro Timer</h1>
       </div>
       <div class="text-right">
-        <a
+        <% if !session[:userid].is_empty?() %>
+          <a class="btn btn-danger" href="./home">ホームへ</a>
+        <% end %>
+        <a class="btn btn-danger"
           <% if session[:userid].is_empty?() %>
             href="./login">ログイン
           <% else %>
@@ -24,11 +28,12 @@
           <% end %>
         </a>
       </div>
-    <hr>
+  </nav>
 
-    <div class="container">
-      <%= yield %>
-    </div>
+  <div class="container bg-white" style="height: 100%;">
+    <br>
+    <%= yield %>
+  </div>
 
     <script src="/bootstrap-4.5.0/jquery-3.5.1.min.js"></script>
     <script src="/bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>

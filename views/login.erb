@@ -1,4 +1,3 @@
-<div class="container">
   <p id="message" class="row justify-content-center" style="color: red;"><%= params[:message] %></p>
   <p class="row justify-content-center">ポモドーロタイマーへようこそ!ここはログインページです。</p>
   <form action="/login" method="post">
@@ -13,9 +12,8 @@
     </div>
 
     <div class="form-group row justify-content-center">
-      <div class="col-sm-2"><input class="btn btn-primary" type="submit" value="ログイン"> </div>
-      <div class="col-sm-2"><a class="btn btn-outline-primary" href="./createuser">新規登録</a></div>
+      <div class="col-sm-2"><input class="btn btn-danger" type="submit" value="ログイン"> </div>
+      <div class="col-sm-2"><a class="btn btn-outline-danger" href="./createuser">新規登録</a></div>
     </div>
   </form>
-</div>
 
