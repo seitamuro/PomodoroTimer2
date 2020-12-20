@@ -115,8 +115,7 @@ post "/createuser" do
     login(params[:userid], params[:password])
   rescue RuntimeError => e
     redirect "/createuser?message=#{URI.escape("#{e}")}"
-  rescue ActiveRecord::StatementInvalid => e
-    puts "#{e}"
+  rescue ActiveRecord::StatementInvalid
     redirect "/createuser?message=#{URI.escape("既に存在するユーザーIDです。別のユーザーIDを利用してください。")}"
   rescue => e
     redirect "/createuser?message=#{URI.escape("新しくユーザーを作成することがでませんでした。もう一度入力してください。")}"
@@ -139,6 +138,7 @@ end
 
 post "/submitpomodoro" do
   if is_login()
+    puts "#{params[:worktype]}"
     $login_users[session[:userid]].add_pomodoro(params[:starttime], params[:endtime], params[:worktype])
   end
 end

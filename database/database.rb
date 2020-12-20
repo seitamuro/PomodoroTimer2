@@ -30,6 +30,10 @@ def normalize_userid(userid)
     raise "ユーザーIDにスペースを含めることはできません。"
   end
 
+  if sanitize(userid).length > 20
+    raise "ユーザーIDが長すぎます。20文字以内にしてください。"
+  end
+
   return sanitize(userid)
 end
 
@@ -40,6 +44,10 @@ def normalize_password(password)
 
   if password.has_whitespace?
     raise "パスワードにスペースを利用できません。"
+  end
+
+  if sanitize(password).length > 200
+    raise "パスワードが長すぎます。200文字以内にしてください。"
   end
 
   return sanitize(password)
@@ -56,6 +64,10 @@ def normalize_username(username)
 
   if username.has_whitespace?
     raise "ユーザー名でスペースを使えません。"
+  end
+
+  if sanitize(username).length > 200
+    raise "ユーザー名が長すぎます。200文字以内にしてください。"
   end
 
   return sanitize(username)
@@ -129,6 +141,7 @@ class User
       raise "Time Format is invalid."
     end
 
+    puts "#{worktype}"
     if !worktype.is_number?
       raise "worktype must be integer."
     end

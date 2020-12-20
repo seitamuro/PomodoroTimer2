@@ -12,9 +12,9 @@ CREATE TABLE pomodoro(
 );
 
 CREATE TABLE users (
-	id varchar(20) primary key,
+	id char(12) primary key,
 	name varchar(200),
-	password char(32),
-	salt char(32),
+	password varchar(200),
+	salt varchar(200),
 	algorithm char(4)
 );
