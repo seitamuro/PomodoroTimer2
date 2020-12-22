@@ -5,6 +5,7 @@
       <th>開始時間</th>
       <th>終了時間</th>
       <th>作業時間</th>
+      <th></th>
     </tr>
   </thead>
 <% @logs.all().reverse_each do |l| %>
@@ -13,7 +14,7 @@
       <td><%= Time.at(l.endtime.to_i) %></td>
       <td><%= to_time_text(l.endtime.to_i - l.starttime.to_i) %></td>
       <td>
-        <a type="button" class="btn" onclick="del_pomodoro('<%= l.id %>')">削除</a>
+        <a type="button" class="btn btn-outline-dark" onclick="del_pomodoro('<%= l.id %>')"><i class="fas fa-trash"></i></a>
       </td>
   </tr>
 <% end %>
