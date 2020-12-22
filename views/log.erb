@@ -1,3 +1,4 @@
+<script src="delete.js"></script>
 <table class="table">
   <thead class="thead-light">
     <tr>
@@ -7,8 +8,13 @@
     </tr>
   </thead>
 <% @logs.all().reverse_each do |l| %>
-  <tr class="<%= if l.worktype == 0 then 'table-danger' else 'table-info' end %>" >
-    <td><%= Time.at(l.starttime.to_i) %></td><td><%= Time.at(l.endtime.to_i) %></td><td><%= to_time_text(l.endtime.to_i - l.starttime.to_i) %></td>
+  <tr id="<%= l.id %>" class="<%= if l.worktype == 0 then 'table-danger' else 'table-info' end %>" >
+      <td><%= Time.at(l.starttime.to_i) %></td>
+      <td><%= Time.at(l.endtime.to_i) %></td>
+      <td><%= to_time_text(l.endtime.to_i - l.starttime.to_i) %></td>
+      <td>
+        <a type="button" class="btn" onclick="del_pomodoro('<%= l.id %>')">削除</a>
+      </td>
   </tr>
 <% end %>
 </table>

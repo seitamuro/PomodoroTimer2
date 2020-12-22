@@ -142,3 +142,13 @@ post "/submitpomodoro" do
     $login_users[session[:userid]].add_pomodoro(params[:starttime], params[:endtime], params[:worktype])
   end
 end
+
+delete "/delete/pomodoro" do
+  if is_login()
+    $login_users[session[:userid]].get_pomodoros().all().each do |p|
+      if p.id == params[:deleteid] then p.destroy end
+    end
+  end
+
+  return ""
+end
